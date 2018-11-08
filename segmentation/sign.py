@@ -7,7 +7,8 @@ SPLIT_SIGN = [
     u'！',
     u'!',
     u'；',
-    u'…'
+    u'…',
+    u'……'
 ]
 
 PAIR_SIGN = {
