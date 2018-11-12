@@ -1,7 +1,7 @@
 # coding=utf-8
 
 import os
-from utils import load_dict
+from .utils import load_dict
 
 stopwords_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'resources', 'stopwords.txt')
 

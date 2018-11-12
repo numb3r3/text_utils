@@ -2,7 +2,7 @@
 
 import os
 import jieba
-from utils import is_chinese
+from ..utils import is_chinese
 
 resource_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../resources')
 
