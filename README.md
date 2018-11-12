@@ -29,6 +29,10 @@ for item in res:
 
 使用Jieba框架，可以自定义词典，停用词。
 
+
+
+**分词使用方法**
+
 ```
 from tokenizer import Tokenizer
 
@@ -38,15 +42,6 @@ tokenizer.load()
 line = '据邯郸市教育局今日通报'
 for token in tokenizer.tokenize(line):
     print(token)
-```
-
-**分词使用方法**
-
-```
-from tokenizer import Tokenizer
-
-tokenizer = Tokenizer()
-tokenizer.load()
 ```
 
 ## 资源文件
