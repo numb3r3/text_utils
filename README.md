@@ -14,7 +14,7 @@
 **断句使用方法**
 
 ```
-from segmentation import SentenceSegmenter
+from segmenter import SentenceSegmenter
 
 text = '据邯郸市教育局今日通报：为进一步落实《河北省教。题的补充。通知。》的文件精神，保证良好的教育发展环境，衡水市第一中学、衡水志臻中学、石家庄二中实验学校等16所外地民办普通高中学校因在邯郸市违规招生，被取消3年内的招生资格。'
 ss = SentenceSegmenter()

@@ -3,7 +3,8 @@ import sys
 import argparse
 import json
 
-from segmentation import SentenceSegmenter
+from segmenter import SentenceSegmenter
+from tokenizer import Tokenizer
 
 def main(args):
     test_cases = [
@@ -29,6 +30,8 @@ def main(args):
 
 
     ss = SentenceSegmenter()
+    tokenizer = Tokenizer()
+    tokenizer.load(args.tokenize_model)
 
     for text in test_cases:
         res = ss.segment(text)
@@ -36,11 +39,14 @@ def main(args):
         print('+++++++++++++++++++++++++++++++++++')
         for item in res:
             print(item)
+            tokens = tokenizer.tokenize(item)
+            print(tokens)
         print('===================================\n')
 
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("-input", type=str, help="the input file")
+    parser.add_argument("-tokenize_model", type=str, help="the tokenize model path")
 
     return parser.parse_args()
 
