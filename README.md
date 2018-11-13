@@ -42,8 +42,7 @@ for item in res:
 ```
 from tokenizer import Tokenizer
 
-tokenizer = Tokenizer()
-tokenizer.load()
+tokenizer = Tokenizer(model_path=None)
 
 line = '据邯郸市教育局今日通报'
 for token in tokenizer.tokenize(line):
