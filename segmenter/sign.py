@@ -14,7 +14,7 @@ SPLIT_SIGN = [
 ]
 
 
-MAYBE_SPLIT_SIGN = [
+SOFTEN_SPLIT_SIGN = [
     u',',
     u'，',
     u':',

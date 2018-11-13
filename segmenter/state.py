@@ -1,6 +1,6 @@
 # coding=utf-8
 
-from .sign import SPLIT_SIGN, MAYBE_SPLIT_SIGN
+from .sign import SPLIT_SIGN, SOFTEN_SPLIT_SIGN
 from .context import Context
 
 class ContextState(object):
@@ -21,7 +21,7 @@ class CharCheckContextState(ContextState):
 
         if (not context.is_pair_sign_opened) and (current_char in context.pair_signs):
             context.state = CONTEXT_STATE_MANAGER["PAIR_SIGN_CONTEXT_STATE"]
-        elif context.is_too_long() and current_char in MAYBE_SPLIT_SIGN:
+        elif context.is_too_long() and current_char in SOFTEN_SPLIT_SIGN:
             context.current_sentence_builder.append(current_char)
             context.state = CONTEXT_STATE_MANAGER["SPLIT_CONTEXT_STATE"]
         elif current_char in context.split_signs:
@@ -57,7 +57,7 @@ class PairSignContextState(ContextState):
             context.current_sentence_builder.append(context.current_char)
         else:
             pair_sign_context = Context(context.text, CONTEXT_STATE_MANAGER["CHAR_CHECK_CONTEXT_STATE"],
-                                        context.split_signs, context.pair_signs, context.maybe_split_signs, context.token_limits)
+                                        context.split_signs, context.pair_signs, context.soften_split_signs, context.token_limits)
             pair_sign_context.sentences.append(context.current_char)
 
             pair_sign_context.current_index = context.current_index + 1
@@ -107,7 +107,7 @@ class SplitContextState(ContextState):
         while context.current_index < len(context.text) - 1:
             context.current_index += 1
             tmp = context.text[context.current_index]
-            if tmp in context.split_signs or tmp in context.maybe_split_signs:
+            if tmp in context.split_signs or tmp in context.soften_split_signs:
                 context.current_sentence_builder.append(tmp)
             else:
                 context.current_index -= 1

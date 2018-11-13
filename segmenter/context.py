@@ -13,14 +13,14 @@ class Context(object):
     back_pair_sign = None
     token_num = 0
 
-    def __init__(self, text, state, split_signs, pair_signs, maybe_split_signs, token_limits=None):
+    def __init__(self, text, state, split_signs, pair_signs, soften_split_signs, token_limits=None):
         self.text = text
         self.state = state
         self.current_sentence_builder = []
         self.sentences = []
         self.split_signs = split_signs
         self.pair_signs = pair_signs
-        self.maybe_split_signs = maybe_split_signs
+        self.soften_split_signs = soften_split_signs
         self.token_limits = token_limits
 
     @property
