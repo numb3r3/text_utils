@@ -12,6 +12,7 @@ class Context(object):
     pair_sign = None
     back_pair_sign = None
     token_num = 0
+    char_num = 0
 
     def __init__(self, text, state, split_signs, pair_signs, soften_split_signs, token_limits=None):
         self.text = text
@@ -37,6 +38,7 @@ class Context(object):
     def clear_local_state(self):
         self.current_sentence_builder = []
         self.token_num = 0
+        self.char_num = 0
 
     def is_too_long(self):
         return (self.token_limits <= self.token_num) if self.token_limits else False

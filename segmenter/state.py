@@ -2,6 +2,7 @@
 
 from .sign import SPLIT_SIGN, SOFTEN_SPLIT_SIGN
 from .context import Context
+from ..utils import is_chinese
 
 class ContextState(object):
     def execute(self, context):
@@ -16,8 +17,9 @@ class CharCheckContextState(ContextState):
 
         current_char = context.current_char
 
-        if context.current_index > 0 and current_char.isspace():
-            context.token_num += 1
+        if is_chinese(current_char):
+            context.char_num += 1
+        context.token_num = int(context.char_num / 2)
 
         if (not context.is_pair_sign_opened) and (current_char in context.pair_signs):
             context.state = CONTEXT_STATE_MANAGER["PAIR_SIGN_CONTEXT_STATE"]
