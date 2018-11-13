@@ -39,4 +39,4 @@ class Context(object):
         self.token_num = 0
 
     def is_too_long(self):
-        return (self.token_limits > self.token_num) if self.token_limits else False
+        return (self.token_limits <= self.token_num) if self.token_limits else False
