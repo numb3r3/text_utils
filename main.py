@@ -27,8 +27,7 @@ def main(args):
 
 
     ss = SentenceSegmenter(token_limits=None)
-    tokenizer = Tokenizer()
-    tokenizer.load(args.tokenize_model)
+    tokenizer = Tokenizer(args.tokenize_model)
 
     for text in test_cases:
         res = ss.segment(text)

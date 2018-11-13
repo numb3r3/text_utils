@@ -9,11 +9,12 @@ resource_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../res
 class Tokenizer:
     _is_init = False
 
-    def __init__(self):
+    def __init__(self, model_path=None):
         self._jieba = jieba.Tokenizer()
         self._jieba.cache_file = "qqnews.jieba_wrapper.cache"
+        self._load(model_path=model_path)
 
-    def load(self, model_path=None):
+    def _load(self, model_path=None):
         if self._is_init:
             return
         if not model_path:
