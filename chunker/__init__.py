@@ -2,7 +2,7 @@
 
 import os
 
-from trie import Trie
+from ..trie import Trie
 
 resource_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../resources')
 
