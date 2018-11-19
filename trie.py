@@ -28,7 +28,7 @@ class Trie(object):
             pos += 1
         return ret
 
-    def translate(self, text, with_not_found=True):
+    def extract(self, text, with_not_found=True):
         n = len(text)
         pos = 0
         ret = []

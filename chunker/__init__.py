@@ -18,8 +18,8 @@ class Chunker:
                 k = line.strip().split('\t')[0]
                 self.trie.insert(k, k)
 
-    def extract_keywords(self, content):
-        ret = self.trie.translate(content, with_not_found=False)
+    def extract_chunks(self, text):
+        ret = self.trie.extract(text, with_not_found=False)
         return ret
 
 
@@ -36,6 +36,6 @@ if __name__ == '__main__':
     content = "我来到北京清华大学大卫路易斯踢球吧大卫路易斯超高智能进化机器人小罗伯特唐尼苏州金龙团小罗伯特他们团不过我们邪神洛基"
     # tri_tree = build_tri_tree(keywords_dict)
     print(content)
-    res = chunker.extract_keywords(content)
+    res = chunker.extract_chunks(content)
     print(res)
     print("##### finnish now !")
