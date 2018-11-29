@@ -19,7 +19,7 @@ class CharCheckContextState(ContextState):
 
         if is_chinese(current_char):
             context.char_num += 1
-        context.token_num = int(context.char_num / 2)
+        context.token_num = int(context.char_num / 1.5)
 
         if (not context.is_pair_sign_opened) and (current_char in context.pair_signs):
             context.state = CONTEXT_STATE_MANAGER["PAIR_SIGN_CONTEXT_STATE"]
