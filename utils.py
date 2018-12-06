@@ -2,11 +2,38 @@
 
 import sys
 import os
-
+import re
+import time
 
 from itertools import groupby
 from .symbols import punctuation
 
+def timeit(method):
+    def timed(*args, **kw):
+        ts = time.time()
+        result = method(*args, **kw)
+        te = time.time()
+        if 'log_time' in kw:
+            name = kw.get('log_name', method.__name__.upper())
+            kw['log_time'][name] = int((te - ts) * 1000)
+        else:
+            print('%r  %2.2f ms' % (method.__name__, (te - ts) * 1000))
+        return result
+    return timed
+
+def multiple_replace(dictobj, text):
+    """ Replace in 'text' all occurences of any key in the given
+    dictionary by its corresponding value.  Returns the new tring.
+    """
+
+    # Sort keys by length, longest first
+    keys = sorted(dictobj.keys(), key=lambda a: len(a), reverse=True)
+
+    # Create a regular expression  from the dictionary keys
+    regex = re.compile("(%s)" % "|".join(map(re.escape, keys)))
+
+    # For each match, look-up corresponding value in dictionary
+    return regex.sub(lambda mo: dictobj[mo.string[mo.start():mo.end()]], text)
 
 def remove_dumplicates(text):
     newtext = []
@@ -16,7 +43,6 @@ def remove_dumplicates(text):
         else:
             newtext.extend(g)
     return ''.join(newtext)
-
 
 def filter_whitespace(tokens):
     filtered_tokens = tokens
