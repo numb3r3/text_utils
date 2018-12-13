@@ -20,6 +20,7 @@ from .stopwords import (is_stopword, filter_stopwords)
 from . import symbols
 from .trie import Trie
 from .tokenizer import Tokenizer
+from .tokenizer.qq_tokenizer import QQTokenizer
 from .segmenter import SentenceSegmenter
 from .ner import (Entity, NameEntityRecognizer)
 from .chunker import Chunker
