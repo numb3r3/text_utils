@@ -1,26 +1,11 @@
 # coding=utf-8
 
 SPLIT_SIGN = [
-    u'？',
-    u'?',
-    u'。',
-    u'！',
-    u'!',
-    u'；',
-    u'…',
-    u'……'
-    u'...',
-    u'......'
+    u'？', u'?', u'。', u'！', u'!', u'；', u'…', u'……'
+    u'...', u'......'
 ]
 
-
-SOFTEN_SPLIT_SIGN = [
-    u',',
-    u'，',
-    u':',
-    u'：',
-    u'、'
-]
+SOFTEN_SPLIT_SIGN = [u',', u'，', u':', u'：', u'、']
 
 PAIR_SIGN = {
     u'“': [u'”'],

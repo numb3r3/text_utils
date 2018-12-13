@@ -4,9 +4,12 @@ import os
 
 from ..trie import Trie
 
-resource_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../resources')
+resource_path = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), '../resources')
+
 
 class Chunker:
+
     def __init__(self, dict_file=None):
         if not dict_file:
             dict_file = os.path.join(resource_path, "ner_dict.txt")

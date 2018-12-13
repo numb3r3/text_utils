@@ -4,10 +4,12 @@ import os
 from . import Tokenizer
 from .qqsegment.qqsegment import QQSegmenter
 
-resource_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../resources/qqseg_dict')
+resource_path = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), '../resources/qqseg_dict')
 
 
 class QQTokenizer(Tokenizer):
+
     def __init__(self, model_path=None):
         self.dict_path = model_path or resource_path
         self._qq_seg = QQSegmenter()

@@ -4,10 +4,12 @@ import os
 import collections
 from ..trie import Trie
 
-resource_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../resources')
+resource_path = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), '../resources')
 
 
 class Entity:
+
     def __init__(self, text, start=0, end=0, labels=['MISC']):
         self.text = text
         self.labels = labels
@@ -15,10 +17,12 @@ class Entity:
         self.end = end
 
     def __str__(self):
-        return ('(%s - %s [%d~%d])' % (self.text, '/'.join(self.labels), self.start, self.end))
+        return ('(%s - %s [%d~%d])' % (self.text, '/'.join(self.labels),
+                                       self.start, self.end))
 
 
 class NameEntityRecognizer:
+
     def __init__(self, dict_file=None):
         self.trie = Trie()
         if not dict_file:
@@ -45,12 +49,14 @@ class NameEntityRecognizer:
                 k = tmp[0]
                 t = tmp[1]
                 labels = self.ner_labels[t]
-                ent = Entity(text=t, start=pos, end=pos + len(t), labels=labels)
+                ent = Entity(
+                    text=t, start=pos, end=pos + len(t), labels=labels)
                 ret.append(ent)
                 pos += len(k)
                 continue
             pos += 1
         return ret
+
 
 if __name__ == '__main__':
     print("##### start now !")

@@ -4,7 +4,9 @@ from .sign import SPLIT_SIGN, SOFTEN_SPLIT_SIGN
 from .context import Context
 from ..utils import is_chinese
 
+
 class ContextState(object):
+
     def execute(self, context):
         pass
 
@@ -21,7 +23,8 @@ class CharCheckContextState(ContextState):
             context.char_num += 1
         context.token_num = int(context.char_num / 1.5)
 
-        if (not context.is_pair_sign_opened) and (current_char in context.pair_signs):
+        if (not context.is_pair_sign_opened) and (
+                current_char in context.pair_signs):
             context.state = CONTEXT_STATE_MANAGER["PAIR_SIGN_CONTEXT_STATE"]
         elif context.is_too_long() and current_char in SOFTEN_SPLIT_SIGN:
             context.current_sentence_builder.append(current_char)
@@ -30,10 +33,12 @@ class CharCheckContextState(ContextState):
             context.current_sentence_builder.append(current_char)
             context.state = CONTEXT_STATE_MANAGER["SPLIT_CONTEXT_STATE"]
         elif context.is_pair_sign_opened and current_char in context.back_pair_sign:
-            context.state = CONTEXT_STATE_MANAGER["PAIR_SIGN_CLOSE_CONTEXT_STATE"]
+            context.state = CONTEXT_STATE_MANAGER[
+                "PAIR_SIGN_CLOSE_CONTEXT_STATE"]
         else:
             context.current_sentence_builder.append(current_char)
             context.state = CONTEXT_STATE_MANAGER["FINISH_CHECK_CONTEXT_STATE"]
+
 
 class FinishCheckContextState(ContextState):
 
@@ -58,13 +63,17 @@ class PairSignContextState(ContextState):
         if context.current_index + 1 == len(context.text):
             context.current_sentence_builder.append(context.current_char)
         else:
-            pair_sign_context = Context(context.text, CONTEXT_STATE_MANAGER["CHAR_CHECK_CONTEXT_STATE"],
-                                        context.split_signs, context.pair_signs, context.soften_split_signs, context.token_limits)
+            pair_sign_context = Context(
+                context.text,
+                CONTEXT_STATE_MANAGER["CHAR_CHECK_CONTEXT_STATE"],
+                context.split_signs, context.pair_signs,
+                context.soften_split_signs, context.token_limits)
             pair_sign_context.sentences.append(context.current_char)
 
             pair_sign_context.current_index = context.current_index + 1
             pair_sign_context.pair_sign = context.current_char
-            pair_sign_context.back_pair_sign = context.pair_signs[pair_sign_context.pair_sign]
+            pair_sign_context.back_pair_sign = context.pair_signs[
+                pair_sign_context.pair_sign]
             pair_sign_context.is_pair_sign_opened = True
             pair_sign_context.execute()
             res = pair_sign_context.sentences
@@ -85,6 +94,7 @@ class PairSignContextState(ContextState):
             context.current_index = pair_sign_context.current_index
 
         context.state = CONTEXT_STATE_MANAGER["FINISH_CHECK_CONTEXT_STATE"]
+
 
 class PairSignCloseContextState(ContextState):
 
