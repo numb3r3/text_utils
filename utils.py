@@ -2,10 +2,27 @@
 
 import sys
 import os
+import re
 
 
 from itertools import groupby
 from .symbols import punctuation
+
+
+def multiple_replace(dictobj, text):
+    """ Replace in 'text' all occurences of any key in the given
+    dictionary by its corresponding value.  Returns the new tring.
+    """
+
+    # Sort keys by length, longest first
+    keys = sorted(dictobj.keys(), key=lambda a: len(a), reverse=True)
+
+    # Create a regular expression  from the dictionary keys
+    regex = re.compile("(%s)" % "|".join(map(re.escape, keys)))
+
+    # For each match, look-up corresponding value in dictionary
+    return regex.sub(lambda mo: dictobj[mo.string[mo.start():mo.end()]], text)
+
 
 
 def remove_dumplicates(text):
