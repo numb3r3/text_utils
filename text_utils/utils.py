@@ -93,6 +93,11 @@ def is_alphabet(uchar):
     else:
         return False
 
+def is_puncutation(uchar):
+    if uchar in punctuation:
+        return True
+    return False
+
 
 def is_other(uchar):
     if not (is_chinese(uchar) or is_number(uchar) or is_alphabet(uchar)):
