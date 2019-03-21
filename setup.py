@@ -34,4 +34,4 @@ setup(
     packages=['text_utils'],
     license='LICENSE',
     description='Text Pre-processing Utils.',
-    long_description=open('README').read())
+    long_description=open('README.md').read())
