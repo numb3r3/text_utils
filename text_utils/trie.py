@@ -29,7 +29,7 @@ class Trie(object):
             pos += 1
         return ret
 
-    def extract(self, text, with_not_found=True):
+    def extract(self, text, with_position=False, with_not_found=True):
         n = len(text)
         pos = 0
         ret = []
@@ -38,7 +38,12 @@ class Trie(object):
             if text[pos] in now:
                 tmp = self.find(text, pos)
                 if tmp:
-                    ret.append(tmp[1])
+                    _ret = tmp[1]
+                    if with_position:
+                        end = pos + len(tmp[0])
+                        _ret = (tmp[1], pos, end)
+
+                    ret.append(_ret)
                     pos += len(tmp[0])
                     continue
             if with_not_found:

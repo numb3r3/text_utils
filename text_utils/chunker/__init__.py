@@ -21,8 +21,8 @@ class Chunker:
                 k = line.strip().split('\t')[0]
                 self.trie.insert(k, k)
 
-    def extract_chunks(self, text):
-        ret = self.trie.extract(text, with_not_found=False)
+    def extract_chunks(self, text, with_position=False):
+        ret = self.trie.extract(text, with_position=with_position, with_not_found=False)
         return ret
 
 
