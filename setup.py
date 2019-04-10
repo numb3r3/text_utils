@@ -12,6 +12,9 @@ setup(
     author_email='wangfelix87@gmail.com',
     packages=find_packages(),
     package_data={'text_utils': ['resources/*']},
+    install_requires=[
+        'ftfy>=5.5.0',
+    ],
     license='LICENSE',
     description='Text Pre-processing Utils.',
     long_description=open('README.md').read())

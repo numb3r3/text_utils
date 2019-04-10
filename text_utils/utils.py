@@ -7,11 +7,15 @@ import time
 
 from itertools import groupby
 from .symbols import punctuation
+from ftfy import fix_text
 
 
 def clean_html(x):
     return re.sub(u'</?[a-z]+[0-9]?(\s[^>\u4e00-\u9fa5]+)?>?', '',
                   x.replace("&nbsp;", " "))
+
+def fix_text(text):
+    return fix_text(text)
 
 
 def timeit(method):
