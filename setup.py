@@ -13,6 +13,7 @@ setup(
     packages=find_packages(),
     package_data={'text_utils': ['resources/*']},
     install_requires=[
+        'jieba',
         'ftfy>=5.5.0',
     ],
     license='LICENSE',
