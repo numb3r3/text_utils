@@ -13,7 +13,7 @@ class Tokenizer:
 
     def __init__(self, model_path=None):
         self._jieba = jieba.Tokenizer()
-        self._jieba.cache_file = "qqnews.jieba_wrapper.cache"
+        self._jieba.cache_file = "jieba_token.cache"
         self._load(model_path=model_path)
 
     def _load(self, model_path=None):
