@@ -70,7 +70,7 @@ def filter_whitespace(tokens):
 
 def load_dict(file_path):
     words = set([])
-    with open(file_path, 'r') as fin:
+    with open(file_path, 'r', encoding='utf-8') as fin:
         for line in fin:
             if len(line.strip()) > 0:
                 words.add(line.strip())
