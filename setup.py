@@ -18,4 +18,4 @@ setup(
     ],
     license='LICENSE',
     description='Text Pre-processing Utils.',
-    long_description=open('README.md').read())
+    long_description=open('README.md', encoding='utf-8').read())
