@@ -76,6 +76,9 @@ def load_dict(file_path):
                 words.add(line.strip())
     return words
 
+def is_chinese_word(word):
+    cn_reg = '^[\u4e00-\u9fa5]+$'
+    return re.search(cn_reg, word)
 
 def is_chinese(uchar):
     if 0x4e00 <= ord(uchar) <= 0x9fff:
