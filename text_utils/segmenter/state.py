@@ -22,7 +22,7 @@ class CharCheckContextState(ContextState):
         if is_chinese(current_char):
             context.char_num += 1
         context.token_num = int(context.char_num / 1.5)
-
+        # print(f"char: {current_char} is_pair_sign_opened: {context.is_pair_sign_opened} - {current_char in context.pair_signs}")
         if (not context.is_pair_sign_opened) and (
                 current_char in context.pair_signs):
             context.state = CONTEXT_STATE_MANAGER["PAIR_SIGN_CONTEXT_STATE"]
@@ -78,11 +78,19 @@ class PairSignContextState(ContextState):
             pair_sign_context.execute()
             res = pair_sign_context.sentences
 
-            if len(res) == 3 and \
-                    res[2] in pair_sign_context.back_pair_sign and \
-                    res[0] == pair_sign_context.pair_sign and \
-                    ((res[1] and res[1][-1] not in SPLIT_SIGN) or (len(res[1]) < 20)):
-                context.current_sentence_builder.append(''.join(res))
+            if len(res) < 8 and \
+                    res[-1] in pair_sign_context.back_pair_sign and \
+                    res[0] == pair_sign_context.pair_sign:
+                    
+                    if res[-2][-1] not in SPLIT_SIGN:
+                         context.current_sentence_builder.append(''.join(res))
+                    else:
+
+                        sen = ''.join(context.current_sentence_builder)
+
+                        sen = ''.join([sen] + res)
+                        context.sentences.append(sen)
+                        context.clear_local_state()
             else:
                 if len(context.current_sentence_builder) != 0:
                     sen = ''.join(context.current_sentence_builder)
